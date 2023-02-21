@@ -33,7 +33,16 @@ describe('Department', () => {
           });
       
         }
-      
+    });
+    it('should not throw an error if "name" is ok', () => {
+        const cases = ['Managment', 'Human Resources', 'Marketing']; // various cases of department names
+        for(let name of cases) {
+            const dep = new Department({ name });
+
+            dep.validate(err => {
+                expect(err.errors.name).to.not.exist;
+            });
+        }
     });
 
     after(() => {
